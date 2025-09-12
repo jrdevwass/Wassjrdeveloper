@@ -3,134 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wassim Hethat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-
+  <title>Wassim Hethat - Software Engineer | Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --bg-dark: #0E0E0E;
+      --card-dark: #151515;
+      --accent-teal: #00FFC6;
+      --text-white: #FFFFFF;
+      --text-light: #B3B3B3;
+      --card-radius: 16px;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
     body {
-      background: linear-gradient(to right, #001F3F, #003366);
-      color: white;
+      background-color: var(--bg-dark);
+      color: var(--text-white);
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
+    /* Navigation */
     nav {
-  width: 100%;
-  padding: 20px 40px;
-  background-color: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+      width: 100%;
+      padding: 20px 40px;
+      background-color: rgba(10, 10, 10, 0.95);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
 
-nav h1 {
-  font-size: 20px;
-  font-weight: 700;
-  z-index: 11;
-}
+    nav h1 {
+      font-size: 20px;
+      font-weight: 700;
+      z-index: 101;
+      color: var(--text-white);
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
 
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  font-size: 16px;
-}
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-size: 16px;
+    }
 
-nav ul li a:hover {
-  color: #66ccff;
-}
-/* Hamburger Menu Styles */
-.hamburger {
-  display: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 11;
-}
+    nav ul li a:hover {
+      color: var(--accent-teal);
+    }
 
-.hamburger span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background: white;
-  margin: 5px 0;
-  transition: all 0.3s ease;
-}
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 101;
+    }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-  
-  nav ul {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 70%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    gap: 30px;
-    transition: left 0.5s ease;
-    z-index: 10;
-  }
-  
-  nav ul.active {
-    left: 0;
-  }
-  
-  nav ul li {
-    margin: 0;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.4s ease;
-  }
-  
-  nav ul.active li {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  /* Staggered animation for menu items */
-  nav ul.active li:nth-child(1) { transition-delay: 0.2s; }
-  nav ul.active li:nth-child(2) { transition-delay: 0.3s; }
-  nav ul.active li:nth-child(3) { transition-delay: 0.4s; }
-  nav ul.active li:nth-child(4) { transition-delay: 0.5s; }
-  nav ul.active li:nth-child(5) { transition-delay: 0.6s; }
-  
-  /* Hamburger animation */
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-  }
-}
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text-white);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
 
+    /* Background Animation */
     .background-animation {
       position: fixed;
       width: 100vw;
@@ -141,12 +100,13 @@ nav ul li a:hover {
       overflow: hidden;
     }
 
-    .binary {
+    .code-snippet {
       position: absolute;
-      color: rgba(255,255,255,0.05);
-      font-size: 20px;
+      color: rgba(255,255,255,0.03);
+      font-size: 16px;
       white-space: nowrap;
-      animation: move 10s linear infinite;
+      font-family: monospace;
+      animation: move 15s linear infinite;
     }
 
     @keyframes move {
@@ -154,394 +114,936 @@ nav ul li a:hover {
       100% { transform: translateY(100vh); }
     }
 
+    /* Section Styles */
     .section {
       min-height: 100vh;
       padding: 120px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .about-box, .resume-box, .contact-box, .projects-box {
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 40px;
-      border-radius: 15px;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeIn 1s ease-in-out;
-      <!-- text-align: left; -->
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      color: var(--text-white);
+      text-align: center;
     }
 
-    .resume-box h2, .contact-box h2, .projects-box h2 {
-      font-size: 30px;
+    /* Card Styles */
+    .card {
+      background-color: var(--card-dark);
+      padding: 24px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
       margin-bottom: 20px;
     }
 
-    .contact-box p {
-      font-size: 18px;
-      margin-bottom: 30px;
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-white);
     }
 
-    .social-icons {
+    .card-text {
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    /* About Section */
+    .about-box {
+      display: block;
+    }
+
+    /* Resume Section */
+    .resume-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .education-item {
       display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .education-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 255, 198, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 40px;
-      margin-top: 20px;
+      margin-right: 15px;
     }
 
-    .social-icons a {
-      color: white;
-      font-size: 30px;
-      transition: transform 0.3s ease, color 0.3s ease;
+    .education-icon i {
+      color: var(--accent-teal);
+      font-size: 20px;
     }
 
-    .social-icons a:hover {
-      transform: scale(1.2);
-      color: #3399ff;
+    .education-details h4 {
+      color: var(--text-white);
+      margin-bottom: 5px;
     }
 
+    .education-details p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .skill-pill {
+      background-color: var(--accent-teal);
+      color: var(--bg-dark);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Experience Section */
+    .experience-item {
+      margin-bottom: 25px;
+      padding-left: 20px;
+      border-left: 2px solid var(--accent-teal);
+    }
+
+    .experience-date {
+      color: var(--accent-teal);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .experience-title {
+      color: var(--text-white);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .experience-company {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .experience-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Projects Section */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 40px;
     }
 
     .project-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
+      background-color: var(--card-dark);
+      border-radius: var(--card-radius);
+      overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .project-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(102, 204, 255, 0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    .project-card h3 {
+    .project-image {
+      height: 180px;
+      background-color: #252525;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image i {
+      font-size: 60px;
+      color: #444;
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      color: var(--text-white);
+      font-size: 1.2rem;
       margin-bottom: 10px;
-      color: #66ccff;
     }
 
-    .project-card p {
-      font-size: 14px;
-      line-height: 1.5;
+    .project-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
     }
-.services-box {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 40px;
-  border-radius: 15px;
-  max-width: 1000px;
-  margin: auto;
-  animation: fadeIn 1s ease-in-out;
-}
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-}
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-.service-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .tech-tag {
+      background-color: rgba(0, 255, 198, 0.1);
+      color: var(--accent-teal);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
 
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(102, 204, 255, 0.5);
-}
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
 
-.service-card h3 {
-  margin-bottom: 10px;
-  color: #66ccff;
-}
+    .service-card {
+      background-color: var(--card-dark);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.service-card p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
 
-.price {
-  color: #66ccff;
-  font-weight: bold;
-  font-size: 16px;
-}
+    .service-title {
+      color: var(--text-white);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
-.pricing-note {
-  margin-top: 30px;
-  font-size: 14px;
-  color: #aaa;
-  text-align: center;
-}
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .service-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .service-price {
+      color: var(--accent-teal);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .pricing-note {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    /* Contact Section */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 255, 198, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .contact-icon i {
+      color: var(--accent-teal);
+      font-size: 18px;
+    }
+
+    .contact-details h4 {
+      color: var(--text-white);
+      margin-bottom: 5px;
+    }
+
+    .contact-details p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .social-icons a {
+      width: 50px;
+      height: 50px;
+      background-color: var(--card-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--accent-teal);
+      color: var(--bg-dark);
+      transform: translateY(-3px);
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--card-dark);
+      border-radius: var(--card-radius);
+    }
+
+    .stat-number {
+      color: var(--accent-teal);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .about-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        gap: 30px;
+        transition: left 0.5s ease;
+        z-index: 100;
+      }
+      
+      nav ul.active {
+        left: 0;
+      }
+      
+      nav ul li {
+        margin: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.4s ease;
+      }
+      
+      nav ul.active li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      nav ul.active li:nth-child(1) { transition-delay: 0.2s; }
+      nav ul.active li:nth-child(2) { transition-delay: 0.3s; }
+      nav ul.active li:nth-child(3) { transition-delay: 0.4s; }
+      nav ul.active li:nth-child(4) { transition-delay: 0.5s; }
+      nav ul.active li:nth-child(5) { transition-delay: 0.6s; }
+      
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      .section {
+        padding: 100px 15px 40px;
+      }
     }
   </style>
 </head>
 <body>
   <nav>
-  <h1>Wassim Hethat - Software Engineer | Developer</h1>
-  <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#resume">Resume</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <h1>Wassim Hethat - Full Stack Developer</h1>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
   <div class="background-animation">
-    <div class="binary" style="left: 10%; animation-delay: 0s;">101010101010101010101010</div>
-    <div class="binary" style="left: 30%; animation-delay: 2s;">110011001100110011001100</div>
-    <div class="binary" style="left: 50%; animation-delay: 1s;">001100110011001100110011</div>
-    <div class="binary" style="left: 70%; animation-delay: 3s;">111000111000111000111000</div>
-    <div class="binary" style="left: 90%; animation-delay: 4s;">000111000111000111000111</div>
+    <div class="code-snippet" style="left: 5%; animation-delay: 0s;">def calculate():<br>&nbsp;&nbsp;return "Hello World"</div>
+    <div class="code-snippet" style="left: 20%; animation-delay: 3s;">function multiply(a, b) {<br>&nbsp;&nbsp;return a * b;<br>}</div>
+    <div class="code-snippet" style="left: 35%; animation-delay: 6s;">import React from 'react';<br>const App = () => (<br>&nbsp;&nbsp;div>Hello/div><br>);</div>
+    <div class="code-snippet" style="left: 50%; animation-delay: 9s;">class User:<br>&nbsp;&nbsp;def __init__(self, name):<br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = name</div>
+    <div class="code-snippet" style="left: 65%; animation-delay: 12s;">db.users.find({<br>&nbsp;&nbsp;age: { $gt: 25 }<br>})</div>
   </div>
 
   <section class="section" id="about">
+    <h2 class="section-title">About Me</h2>
     <div class="about-box">
-      <h1>Wassim Hethat</h1>
-      <p>
-        I'm Wassim Hethat, an Algerian Full-Stack Web Developer. I build user-friendly web solutions.<br>
-        I hold a bachelor's degree in Software and Information Systems Engineering and specialize in cybersecurity,
-        database management, and web development.<br><br>
-        Beyond programming, I’m diving into history, learning more about crypto & trades, or getting a good workout in.<br><br>
-        If you're a web developer interested in collaboration, feel free to email me at:
-        <br><a href="mailto:wassimhathat02@gmail.com">wassimhathat02@gmail.com</a>
-      </p>
+      <div class="card">
+        <h3 class="card-title">Wassim Hethat</h3>
+        <p class="card-text">
+          I’m Wassim Hethat, a Full-Stack Web Developer from Algeria. I hold a bachelor’s degree in Information Systems and Software Engineering. I build web solutions that are clear and user-friendly, combining web development with experience in cybersecurity and databases.
+        </p>
+        <p class="card-text">
+          Beyond programming, I'm diving into history, learning more about crypto & trades, or getting a good workout in.
+        </p>
+        <p class="card-text">
+          If you're a web developer interested in collaboration, feel free to email me at:
+          <br><a href="mailto:wassimhathat02@gmail.com" style="color: var(--accent-teal);">wassimhathat02@gmail.com</a>
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="section" id="resume">
-  <div class="resume-box">
-    <h2>Resume</h2>
-    <h3>Summary</h3>
-    <p>Full Stack Web Developer with experience in frontend, backend, and database management, with a strong focus on building responsive, user-friendly web solutions.</p>
-
-    <h3>Technical Skills</h3>
-    <ul style="text-align:left; padding-left: 40px;">
-      <li><strong>Frontend:</strong> HTML5, CSS3 (Flexbox, Grid, Animations), JavaScript (ES6+), React.js, Vue.js, Angular, Figma (UI/UX Design)</li>
-      <li><strong>Backend:</strong> Node.js (Express), PHP (Laravel, CodeIgniter), Python (Django, Flask), Java (Spring Boot)</li>
-      <li><strong>Database:</strong> MySQL, PostgreSQL, MariaDB, MongoDB, Firebase</li>
-      <li><strong>ORMs:</strong> Sequelize (Node.js), Mongoose (MongoDB)</li>
-      <li><strong>Security:</strong> HTTPS, SSL, Data Encryption</li>
-      <li><strong>APIs:</strong> RESTful API Development</li>
-    </ul>
-
-    <h3>Experience</h3>
-    <ul style="text-align:left; padding-left: 40px;">
-      <li><strong>Software Developer</strong> – DisyDev (Sept 2024 – Oct 2024)<br>Developed a medical imaging software, set up networks, and integrated systems for medical use.</li>
-	  
-      <li><strong>Web Engineer</strong> – High Tech Compass (Remote) (Dec 2022 – Apr 2023)<br>Created and maintained responsive websites, working both frontend and backend in remote team.</li>
-	  
-      <li><strong>Intern IT – Software & Information Systems Engineering</strong> – Les Œuvres Sociales, Direction de Sonatrach, El Biar, Algeria | March 2022 – June 2022<br>Completed a 3-month internship as part of the Bachelor’s degree in Software and Information Systems Engineering (ISIL).</li>
-    </ul>
-	
-	<li><strong>Junior Software Development Engineer </strong> Amazon • Irvine, CALIFORNIA, United States | March 2025 – Current <br>Participating in creating, and implementing internet-scale systems and services. Participating in defining the security, scalability, and low latency of processes.</li>
-    </ul>
-
-    <h3>Education</h3>
-    <ul style="text-align:left; padding-left: 40px;">
-      <li><strong>Baccalauréat</strong> – Technical Mathematics, Khales Slimane High School, Bechloul (2019)</li>
-      <li><strong>Bachelor’s Degree</strong> – Software and Information Systems Engineering (ISIL), University of Boumerdès (2019–2022)</li>
-      <li><strong>Master’s Program</strong> – Distributed Information Systems (M1), University of Boumerdès (2022–2023)</li>
-    </ul>
-
-    <h3>Additional Information</h3>
-    <p>Languages: English, French, Arabic, Berber</p>
-  </div>
-</section>
-
-  <section class="section" id="projects">
-    <div class="projects-box">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Medical Imaging Software</h3>
-          <p>Developed for clinics and hospitals to enhance data processing, visualization, and improve diagnosis workflows.</p>
+    <h2 class="section-title">Resume</h2>
+    
+    <div class="resume-grid">
+      <!-- Education -->
+      <div class="card">
+        <h3 class="card-title">Education</h3>
+        <div class="education-item">
+          <div class="education-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="education-details">
+            <h4>Bachelor's Degree in Information Systems and Software Engineering (ISIL)</h4>
+            <p>University of Boumerdès • 2019-2022</p>
+          </div>
         </div>
-        <div class="project-card">
-          <h3>Bakery Management Software</h3>
-          <p>Offline system for managing sales, stock, salaries, and deliveries for a bakery business.</p>
+        <div class="education-item">
+          <div class="education-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="education-details">
+            <h4>Master's Program in Distributed Information Systems (M1)</h4>
+            <p>University of Boumerdès • 2022-2023</p>
+          </div>
         </div>
-        <div class="project-card">
-          <h3>E-commerce Website</h3>
-          <p>Fully functional online store built with secure payment, cart, product filtering and responsive UI.</p>
+        <div class="education-item">
+          <div class="education-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="education-details">
+            <h4>Baccalauréat - Technical Mathematics</h4>
+            <p>Khales Slimane High School • 2019</p>
+          </div>
         </div>
-        <div class="project-card">
-          <h3>Vetki Social App</h3>
-          <p>A Twitter-style web application allowing posts, likes, comments, and user profiles. Real-time features built in.</p>
+      </div>
+      
+      <!-- Technical Skills -->
+      <div class="card">
+        <h3 class="card-title">Technical Skills</h3>
+        <div class="skills-container">
+          <div class="skill-pill">HTML5</div>
+          <div class="skill-pill">CSS3</div>
+          <div class="skill-pill">JavaScript</div>
+          <div class="skill-pill">React.js</div>
+          <div class="skill-pill">Vue.js</div>
+          <div class="skill-pill">Node.js</div>
+          <div class="skill-pill">Python</div>
+          <div class="skill-pill">PHP</div>
+          <div class="skill-pill">MySQL</div>
+          <div class="skill-pill">MongoDB</div>
+          <div class="skill-pill">Git</div>
+          <div class="skill-pill">Docker</div>
         </div>
-        <div class="project-card">
-          <h3>Real Estate Listings Website</h3>
-          <p>Responsive platform for publishing, searching, and managing housing properties with geolocation integration.</p>
+      </div>
+      
+      <!-- Experience -->
+      <div class="card">
+        <h3 class="card-title">Experience</h3>
+        <div class="experience-item">
+          <div class="experience-date">Mar 2025 - Present</div>
+          <h4 class="experience-title">Junior Software Development Engineer</h4>
+          <div class="experience-company">Amazon • Irvine, California</div>
+          <p class="experience-description">
+            Participating in creating and implementing internet-scale systems and services. 
+            Contributing to defining the security, scalability, and low latency of processes.
+          </p>
         </div>
-        <div class="project-card">
-          <h3>Crypto Price Dashboard</h3>
-          <p>A dashboard that shows real-time crypto prices with beautiful UI using public APIs and chart libraries.</p>
+        <div class="experience-item">
+          <div class="experience-date">Sept 2024 – Oct 2024</div>
+          <h4 class="experience-title">Software Developer</h4>
+          <div class="experience-company">DisyDev</div>
+          <p class="experience-description">
+            Developed a medical imaging software, set up networks, and integrated systems for medical use.
+          </p>
+        </div>
+        <div class="experience-item">
+          <div class="experience-date">Dec 2022 – Apr 2023</div>
+          <h4 class="experience-title">Web Engineer</h4>
+          <div class="experience-company">High Tech Compass (Remote)</div>
+          <p class="experience-description">
+            Created and maintained responsive websites, working both frontend and backend in remote team.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="card">
+        <h3 class="card-title">Languages</h3>
+        <div class="skills-container">
+          <div class="skill-pill">English</div>
+          <div class="skill-pill">French</div>
+          <div class="skill-pill">Arabic</div>
+          <div class="skill-pill">Berber</div>
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div class="card">
+        <h3 class="card-title">Quick Stats</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">9+</div>
+            <div class="stat-label">Technologies</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Satisfaction</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-<section class="section" id="services">
-  <div class="services-box">
-    <h2>Services & Pricing</h2>
+  <section class="section" id="services">
+    <h2 class="section-title">Services & Pricing</h2>
     <div class="services-grid">
-      <!-- Web Development Services -->
       <div class="service-card">
-        <h3>Website Development</h3>
-        <p>Custom responsive websites built with modern frameworks.</p>
-        <p class="price">$500 - $5,000</p>
-      </div>
-      <div class="service-card">
-        <h3>E-commerce Development</h3>
-        <p>Online stores with shopping cart, payments, and inventory.</p>
-        <p class="price">$2,000 - $15,000</p>
-      </div>
-      <div class="service-card">
-        <h3>Web Application</h3>
-        <p>Custom web apps with database and user authentication.</p>
-        <p class="price">$3,000 - $20,000</p>
-      </div>
-      <div class="service-card">
-        <h3>CMS Development</h3>
-        <p>Custom content management systems for easy content updates.</p>
-        <p class="price">$1,500 - $8,000</p>
-      </div>
-      <div class="service-card">
-        <h3>API Development</h3>
-        <p>RESTful API services for web and mobile applications.</p>
-        <p class="price">$1,000 - $10,000</p>
-      </div>
-      <div class="service-card">
-        <h3>Website Maintenance</h3>
-        <p>Ongoing updates, security patches, and technical support.</p>
-        <p class="price">$50 - $500/month</p>
+        <h3 class="service-title">Website Development</h3>
+        <p class="service-description">Custom responsive websites built with modern frameworks.</p>
+        <p class="service-price">$1200 - $5,000</p>
       </div>
       
-      <!-- Software Development Services -->
       <div class="service-card">
-        <h3>Custom Software</h3>
-        <p>Tailored business solutions for your specific needs.</p>
-        <p class="price">$5,000 - $50,000</p>
-      </div>
-      <div class="service-card">
-        <h3>POS Systems</h3>
-        <p>Point of Sale systems for retail and restaurants.</p>
-        <p class="price">$3,000 - $25,000</p>
-      </div>
-      <div class="service-card">
-        <h3>Inventory Management</h3>
-        <p>Systems to track stock, orders, and supply chain.</p>
-        <p class="price">$2,500 - $15,000</p>
-      </div>
-      <div class="service-card">
-        <h3>CRM Systems</h3>
-        <p>Customer relationship management solutions.</p>
-        <p class="price">$4,000 - $30,000</p>
-      </div>
-      <div class="service-card">
-        <h3>ERP Systems</h3>
-        <p>Enterprise resource planning software integration.</p>
-        <p class="price">$10,000 - $100,000</p>
-      </div>
-      <div class="service-card">
-        <h3>Mobile Applications</h3>
-        <p>Cross-platform mobile apps for iOS and Android.</p>
-        <p class="price">$5,000 - $50,000</p>
+        <h3 class="service-title">E-commerce Development</h3>
+        <p class="service-description">Online stores with shopping cart, payments, and inventory.</p>
+        <p class="service-price">$3,000 - $15,000</p>
       </div>
       
-      <!-- Additional Services -->
       <div class="service-card">
-        <h3>UI/UX Design</h3>
-        <p>User interface and experience design for digital products.</p>
-        <p class="price">$1,000 - $10,000</p>
+        <h3 class="service-title">Web Application</h3>
+        <p class="service-description">Custom web apps with database and user authentication.</p>
+        <p class="service-price">$4,500 - $15,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>Database Design</h3>
-        <p>Custom database architecture and optimization.</p>
-        <p class="price">$800 - $7,000</p>
+        <h3 class="service-title">CMS Development</h3>
+        <p class="service-description">Custom content management systems for easy content updates.</p>
+        <p class="service-price">$1,500 - $8,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>Cloud Integration</h3>
-        <p>Migration and setup of cloud services and storage.</p>
-        <p class="price">$1,500 - $12,000</p>
+        <h3 class="service-title">API Development</h3>
+        <p class="service-description">RESTful API services for web and mobile applications.</p>
+        <p class="service-price">$1,000 - $10,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>Cybersecurity</h3>
-        <p>Security audits, penetration testing, and hardening.</p>
-        <p class="price">$2,000 - $20,000</p>
+        <h3 class="service-title">Website Maintenance</h3>
+        <p class="service-description">Ongoing updates, security patches, and technical support.</p>
+        <p class="service-price">$100 - $500/month</p>
       </div>
+      
       <div class="service-card">
-        <h3>Blockchain Development</h3>
-        <p>Smart contracts and decentralized applications.</p>
-        <p class="price">$5,000 - $50,000</p>
+        <h3 class="service-title">Custom Software</h3>
+        <p class="service-description">Tailored business solutions for your specific needs.</p>
+        <p class="service-price">$5,000 - $35,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>AI Integration</h3>
-        <p>Machine learning and AI features for your applications.</p>
-        <p class="price">$5,000 - $50,000</p>
+        <h3 class="service-title">POS Systems</h3>
+        <p class="service-description">Point of Sale systems for retail and restaurants.</p>
+        <p class="service-price">$5,000 - $25,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>Technical Consulting</h3>
-        <p>Expert advice on technology strategy and implementation.</p>
-        <p class="price">$100 - $300/hour</p>
+        <h3 class="service-title">Inventory Management</h3>
+        <p class="service-description">Systems to track stock, orders, and supply chain.</p>
+        <p class="service-price">$2,500 - $15,000</p>
       </div>
+      
       <div class="service-card">
-        <h3>Code Review</h3>
-        <p>Comprehensive analysis of existing codebase quality.</p>
-        <p class="price">$500 - $5,000</p>
+        <h3 class="service-title">CRM Systems</h3>
+        <p class="service-description">Customer relationship management solutions.</p>
+        <p class="service-price">$4,000 - $25,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">ERP Systems</h3>
+        <p class="service-description">Enterprise resource planning software integration.</p>
+        <p class="service-price">$10,000 - $90,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Mobile Applications</h3>
+        <p class="service-description">Cross-platform mobile apps for iOS and Android.</p>
+        <p class="service-price">$10,000 - $45,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">UI/UX Design</h3>
+        <p class="service-description">User interface and experience design for digital products.</p>
+        <p class="service-price">$1,000 - $10,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Database Design</h3>
+        <p class="service-description">Custom database architecture and optimization.</p>
+        <p class="service-price">$800 - $7,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Cloud Integration</h3>
+        <p class="service-description">Migration and setup of cloud services and storage.</p>
+        <p class="service-price">$1,500 - $9,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Cybersecurity</h3>
+        <p class="service-description">Security audits, penetration testing, and hardening.</p>
+        <p class="service-price">$8,000 - $20,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Blockchain Development</h3>
+        <p class="service-description">Smart contracts and decentralized applications.</p>
+        <p class="service-price">$15,000 - $50,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">AI Integration</h3>
+        <p class="service-description">Machine learning and AI features for your applications.</p>
+        <p class="service-price">$20,000 - $50,000</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Technical Consulting</h3>
+        <p class="service-description">Expert advice on technology strategy and implementation.</p>
+        <p class="service-price">$100 - $300/hour</p>
+      </div>
+      
+      <div class="service-card">
+        <h3 class="service-title">Code Review</h3>
+        <p class="service-description">Comprehensive analysis of existing codebase quality.</p>
+        <p class="service-price">$500 - $3,000</p>
       </div>
     </div>
     
     <div class="pricing-note">
-      <p><em>Note: All prices are in USD. Final pricing depends on project scope and requirements. Contact me for a customized quote.</em></p>
+      <p>Note: All prices are in USD. Final pricing depends on project scope and requirements. Contact me for a customized quote.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-  <section class="section" id="contact">
-    <div class="contact-box">
-      <p>If you're looking for professional services in software development, full-stack solutions (frontend & backend), or specialized systems including web applications, mobile apps, POS systems, and enterprise software, Feel free to reach out through any of the platforms below for consulting, project inquiries, or technical collaboration opportunities.</p>
-      <div class="social-icons">
-        <a href="https://www.instagram.com/devwass_/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/15814597709" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:wassimhathat02@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+  <section class="section" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-laptop-medical"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Medical Imaging Software</h3>
+          <p class="project-description">
+            Developed for clinics and hospitals to enhance data processing, visualization, and improve diagnosis workflows.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">OpenCV</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-store"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Bakery Management Software</h3>
+          <p class="project-description">
+            Offline system for managing sales, stock, salaries, and deliveries for a bakery business.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">E-commerce Website</h3>
+          <p class="project-description">
+            Fully functional online store built with secure payment, cart, product filtering and responsive UI.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-comments"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Vetki Social App</h3>
+          <p class="project-description">
+            A Twitter-style web application allowing posts, likes, comments, and user profiles. Real-time features built in.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Real Estate Listings Website</h3>
+          <p class="project-description">
+            Responsive platform for publishing, searching, and managing housing properties with geolocation integration.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Crypto Price Dashboard</h3>
+          <p class="project-description">
+            A dashboard that shows real-time crypto prices with beautiful UI using public APIs and chart libraries.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">API</span>
+            <span class="tech-tag">Chart.js</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="card">
+      <p class="card-text">
+        If you're looking for professional services in software development, full-stack solutions (frontend & backend), 
+        or specialized systems including web applications, mobile apps, POS systems, and enterprise software, 
+        feel free to reach out through any of the platforms below for consulting, project inquiries, or technical 
+        collaboration opportunities.
+      </p>
+    </div>
+    
+    <div class="contact-info">
+      <div class="card">
+        <h3 class="card-title">Get In Touch</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p>wassimhathat02@gmail.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Phone</h4>
+            <p>+1 (581) 459-7709</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Location</h4>
+            <p>Algeria</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3 class="card-title">Professional Profiles</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="contact-details">
+            <h4>GitHub</h4>
+            <p>github.com/wassimhethat</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <div class="contact-details">
+            <h4>LinkedIn</h4>
+            <p>linkedin.com/in/wassimhethat</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-twitter"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Twitter</h4>
+            <p>twitter.com/devwass_</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="https://www.instagram.com/devwass_/" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/15814597709" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:wassimhathat02@gmail.com" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="#" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="#" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+  </section>
+
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-links li');
-    
-    // Toggle menu
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    
-    // Close menu when a link is clicked
-    navItems.forEach(item => {
-      item.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const navItems = document.querySelectorAll('.nav-links li');
+      
+      // Toggle menu
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+      
+      // Close menu when a link is clicked
+      navItems.forEach(item => {
+        item.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+      
+      // Add smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
       });
     });
-  });
-</script>
+  </script>
 </body>
 </html>

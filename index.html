@@ -23,6 +23,7 @@
       --text-light: #B3B3B3;
       --card-radius: 16px;
       --card-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      --transition: all 0.3s ease;
     }
 
     body {
@@ -30,6 +31,49 @@
       color: var(--text-white);
       overflow-x: hidden;
       line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    body.light-mode {
+      --bg-dark: #f5f5f5;
+      --card-dark: #ffffff;
+      --text-white: #333333;
+      --text-light: #666666;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Scroll Progress */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--card-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--card-shadow);
+      z-index: 99;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(30deg);
     }
 
     /* Navigation */
@@ -45,6 +89,12 @@
       justify-content: space-between;
       align-items: center;
       backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    body.light-mode nav {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     nav h1 {
@@ -64,12 +114,28 @@
       text-decoration: none;
       color: var(--text-light);
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: var(--transition);
       font-size: 16px;
+      position: relative;
+    }
+
+    nav ul li a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-teal);
+      transition: var(--transition);
     }
 
     nav ul li a:hover {
       color: var(--accent-teal);
+    }
+
+    nav ul li a:hover:after {
+      width: 100%;
     }
 
     /* Hamburger Menu */
@@ -86,7 +152,7 @@
       height: 3px;
       background: var(--text-white);
       margin: 5px 0;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     /* Background Animation */
@@ -109,6 +175,10 @@
       animation: move 15s linear infinite;
     }
 
+    body.light-mode .code-snippet {
+      color: rgba(0,0,0,0.03);
+    }
+
     @keyframes move {
       0% { transform: translateY(-100%); }
       100% { transform: translateY(100vh); }
@@ -120,15 +190,36 @@
       padding: 120px 20px 60px;
       max-width: 1200px;
       margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 40px;
       color: var(--text-white);
       text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-teal);
     }
 
     /* Card Styles */
@@ -138,6 +229,12 @@
       border-radius: var(--card-radius);
       box-shadow: var(--card-shadow);
       margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     .card-title {
@@ -155,6 +252,17 @@
     /* About Section */
     .about-box {
       display: block;
+    }
+
+    /* Animated elements */
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
     }
 
     /* Resume Section */
@@ -179,6 +287,11 @@
       align-items: center;
       justify-content: center;
       margin-right: 15px;
+      transition: var(--transition);
+    }
+
+    .education-icon:hover {
+      transform: scale(1.1);
     }
 
     .education-icon i {
@@ -211,6 +324,49 @@
       font-size: 0.9rem;
       font-weight: 500;
       text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .skill-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 198, 0.5);
+    }
+
+    /* Skill bars */
+    .skill-bar {
+      margin-bottom: 15px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .skill-name {
+      color: var(--text-white);
+      font-size: 0.9rem;
+    }
+
+    .skill-percentage {
+      color: var(--accent-teal);
+      font-size: 0.9rem;
+    }
+
+    .skill-progress {
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-progress-bar {
+      height: 100%;
+      background-color: var(--accent-teal);
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.5s ease-in-out;
     }
 
     /* Experience Section */
@@ -218,18 +374,32 @@
       margin-bottom: 25px;
       padding-left: 20px;
       border-left: 2px solid var(--accent-teal);
+      position: relative;
+    }
+
+    .experience-item:before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--accent-teal);
     }
 
     .experience-date {
       color: var(--accent-teal);
       font-size: 0.9rem;
       margin-bottom: 5px;
+      font-weight: 500;
     }
 
     .experience-title {
       color: var(--text-white);
       font-size: 1.1rem;
       margin-bottom: 8px;
+      font-weight: 600;
     }
 
     .experience-company {
@@ -254,7 +424,8 @@
       background-color: var(--card-dark);
       border-radius: var(--card-radius);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: var(--transition);
+      cursor: pointer;
     }
 
     .project-card:hover {
@@ -268,11 +439,34 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-image:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-image:after {
+      opacity: 1;
     }
 
     .project-image i {
       font-size: 60px;
       color: #444;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-image i {
+      transform: scale(1.1);
     }
 
     .project-content {
@@ -305,6 +499,58 @@
       font-size: 0.8rem;
     }
 
+    /* Project Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background-color: var(--card-dark);
+      border-radius: var(--card-radius);
+      max-width: 800px;
+      width: 100%;
+      padding: 30px;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent-teal);
+    }
+
     /* Services Section */
     .services-grid {
       display: grid;
@@ -316,12 +562,19 @@
       background-color: var(--card-dark);
       border-radius: var(--card-radius);
       padding: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: var(--transition);
+      text-align: center;
     }
 
     .service-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .service-icon {
+      font-size: 40px;
+      color: var(--accent-teal);
+      margin-bottom: 15px;
     }
 
     .service-title {
@@ -350,6 +603,61 @@
       font-style: italic;
     }
 
+    /* Testimonials */
+    .testimonials-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .testimonial-card {
+      background-color: var(--card-dark);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      max-width: 350px;
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .testimonial-text {
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #252525;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-teal);
+    }
+
+    .testimonial-info h4 {
+      color: var(--text-white);
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .testimonial-info p {
+      color: var(--text-light);
+      font-size: 0.8rem;
+    }
+
     /* Contact Section */
     .contact-info {
       display: grid;
@@ -361,6 +669,11 @@
       display: flex;
       align-items: center;
       margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
     }
 
     .contact-icon {
@@ -372,11 +685,21 @@
       align-items: center;
       justify-content: center;
       margin-right: 15px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover .contact-icon {
+      background-color: var(--accent-teal);
+    }
+
+    .contact-item:hover .contact-icon i {
+      color: var(--bg-dark);
     }
 
     .contact-icon i {
       color: var(--accent-teal);
       font-size: 18px;
+      transition: var(--transition);
     }
 
     .contact-details h4 {
@@ -406,7 +729,7 @@
       justify-content: center;
       color: var(--text-light);
       font-size: 20px;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     .social-icons a:hover {
@@ -427,6 +750,12 @@
       padding: 20px;
       background-color: var(--card-dark);
       border-radius: var(--card-radius);
+      transition: var(--transition);
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
     .stat-number {
@@ -439,6 +768,27 @@
     .stat-label {
       color: var(--text-light);
       font-size: 0.9rem;
+    }
+
+    /* Download Resume Button */
+    .download-resume {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background-color: var(--accent-teal);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      max-width: 250px;
+    }
+
+    .download-resume:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 255, 198, 0.3);
     }
 
     /* Responsive Styles */
@@ -471,6 +821,10 @@
         gap: 30px;
         transition: left 0.5s ease;
         z-index: 100;
+      }
+
+      body.light-mode nav ul {
+        background: rgba(255, 255, 255, 0.98);
       }
       
       nav ul.active {
@@ -508,10 +862,31 @@
       .section {
         padding: 100px 15px 40px;
       }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .theme-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Scroll Progress -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
   <nav>
     <h1>Wassim Hethat - Full Stack Developer</h1>
     <div class="hamburger">
@@ -539,10 +914,12 @@
   <section class="section" id="about">
     <h2 class="section-title">About Me</h2>
     <div class="about-box">
-      <div class="card">
+      <div class="card floating-element">
         <h3 class="card-title">Wassim Hethat</h3>
         <p class="card-text">
-          I’m Wassim Hethat, a Full-Stack Web Developer from Algeria. I hold a bachelor’s degree in Information Systems and Software Engineering. I build web solutions that are clear and user-friendly, combining web development with experience in cybersecurity and databases.
+          I'm Wassim Hethat, an Algerian Full-Stack Web Developer. I build user-friendly web solutions.
+          I hold a bachelor's degree in Software and Information Systems Engineering and specialize in cybersecurity,
+          database management, and web development.
         </p>
         <p class="card-text">
           Beyond programming, I'm diving into history, learning more about crypto & trades, or getting a good workout in.
@@ -576,7 +953,7 @@
             <i class="fas fa-graduation-cap"></i>
           </div>
           <div class="education-details">
-            <h4>Master's Program in Distributed Information Systems (M1)</h4>
+            <h4>Master's Program in Distributed Information Systems</h4>
             <p>University of Boumerdès • 2022-2023</p>
           </div>
         </div>
@@ -586,7 +963,7 @@
           </div>
           <div class="education-details">
             <h4>Baccalauréat - Technical Mathematics</h4>
-            <p>Khales Slimane High School • 2019</p>
+            <p>Khales Slimane High School Bechloul • 2019</p>
           </div>
         </div>
       </div>
@@ -608,6 +985,36 @@
           <div class="skill-pill">Git</div>
           <div class="skill-pill">Docker</div>
         </div>
+
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span class="skill-name">Frontend Development</span>
+            <span class="skill-percentage">90%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-progress-bar" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span class="skill-name">Backend Development</span>
+            <span class="skill-percentage">85%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-progress-bar" data-width="85%"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span class="skill-name">Database Management</span>
+            <span class="skill-percentage">80%</span>
+          </div>
+          <div class="skill-progress">
+            <div class="skill-progress-bar" data-width="80%"></div>
+          </div>
+        </div>
       </div>
       
       <!-- Experience -->
@@ -623,7 +1030,7 @@
           </p>
         </div>
         <div class="experience-item">
-          <div class="experience-date">Sept 2024 – Oct 2024</div>
+          <div class="experience-date">July 2024 – Oct 2024</div>
           <h4 class="experience-title">Software Developer</h4>
           <div class="experience-company">DisyDev</div>
           <p class="experience-description">
@@ -680,123 +1087,57 @@
     <h2 class="section-title">Services & Pricing</h2>
     <div class="services-grid">
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
         <h3 class="service-title">Website Development</h3>
         <p class="service-description">Custom responsive websites built with modern frameworks.</p>
         <p class="service-price">$1200 - $5,000</p>
       </div>
       
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
         <h3 class="service-title">E-commerce Development</h3>
         <p class="service-description">Online stores with shopping cart, payments, and inventory.</p>
         <p class="service-price">$3,000 - $15,000</p>
       </div>
       
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-window-restore"></i>
+        </div>
         <h3 class="service-title">Web Application</h3>
         <p class="service-description">Custom web apps with database and user authentication.</p>
         <p class="service-price">$4,500 - $15,000</p>
       </div>
       
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-tasks"></i>
+        </div>
         <h3 class="service-title">CMS Development</h3>
         <p class="service-description">Custom content management systems for easy content updates.</p>
         <p class="service-price">$1,500 - $8,000</p>
       </div>
       
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-code"></i>
+        </div>
         <h3 class="service-title">API Development</h3>
         <p class="service-description">RESTful API services for web and mobile applications.</p>
         <p class="service-price">$1,000 - $10,000</p>
       </div>
       
       <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-tools"></i>
+        </div>
         <h3 class="service-title">Website Maintenance</h3>
         <p class="service-description">Ongoing updates, security patches, and technical support.</p>
         <p class="service-price">$100 - $500/month</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Custom Software</h3>
-        <p class="service-description">Tailored business solutions for your specific needs.</p>
-        <p class="service-price">$5,000 - $35,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">POS Systems</h3>
-        <p class="service-description">Point of Sale systems for retail and restaurants.</p>
-        <p class="service-price">$5,000 - $25,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Inventory Management</h3>
-        <p class="service-description">Systems to track stock, orders, and supply chain.</p>
-        <p class="service-price">$2,500 - $15,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">CRM Systems</h3>
-        <p class="service-description">Customer relationship management solutions.</p>
-        <p class="service-price">$4,000 - $25,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">ERP Systems</h3>
-        <p class="service-description">Enterprise resource planning software integration.</p>
-        <p class="service-price">$10,000 - $90,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Mobile Applications</h3>
-        <p class="service-description">Cross-platform mobile apps for iOS and Android.</p>
-        <p class="service-price">$10,000 - $45,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">UI/UX Design</h3>
-        <p class="service-description">User interface and experience design for digital products.</p>
-        <p class="service-price">$1,000 - $10,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Database Design</h3>
-        <p class="service-description">Custom database architecture and optimization.</p>
-        <p class="service-price">$800 - $7,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Cloud Integration</h3>
-        <p class="service-description">Migration and setup of cloud services and storage.</p>
-        <p class="service-price">$1,500 - $9,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Cybersecurity</h3>
-        <p class="service-description">Security audits, penetration testing, and hardening.</p>
-        <p class="service-price">$8,000 - $20,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Blockchain Development</h3>
-        <p class="service-description">Smart contracts and decentralized applications.</p>
-        <p class="service-price">$15,000 - $50,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">AI Integration</h3>
-        <p class="service-description">Machine learning and AI features for your applications.</p>
-        <p class="service-price">$20,000 - $50,000</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Technical Consulting</h3>
-        <p class="service-description">Expert advice on technology strategy and implementation.</p>
-        <p class="service-price">$100 - $300/hour</p>
-      </div>
-      
-      <div class="service-card">
-        <h3 class="service-title">Code Review</h3>
-        <p class="service-description">Comprehensive analysis of existing codebase quality.</p>
-        <p class="service-price">$500 - $3,000</p>
       </div>
     </div>
     
@@ -808,7 +1149,7 @@
   <section class="section" id="projects">
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <div class="project-card">
+      <div class="project-card" data-project="medical">
         <div class="project-image">
           <i class="fas fa-laptop-medical"></i>
         </div>
@@ -825,7 +1166,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card" data-project="bakery">
         <div class="project-image">
           <i class="fas fa-store"></i>
         </div>
@@ -842,7 +1183,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card" data-project="ecommerce">
         <div class="project-image">
           <i class="fas fa-shopping-cart"></i>
         </div>
@@ -859,7 +1200,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card" data-project="vetki">
         <div class="project-image">
           <i class="fas fa-comments"></i>
         </div>
@@ -876,7 +1217,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card" data-project="realestate">
         <div class="project-image">
           <i class="fas fa-home"></i>
         </div>
@@ -893,7 +1234,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card" data-project="crypto">
         <div class="project-image">
           <i class="fas fa-chart-line"></i>
         </div>
@@ -906,6 +1247,58 @@
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">API</span>
             <span class="tech-tag">Chart.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Modals -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <section class="section" id="testimonials">
+    <h2 class="section-title">Client Testimonials</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Wassim delivered an exceptional e-commerce platform for our business. His attention to detail and technical expertise exceeded our expectations."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="testimonial-info">
+            <h4>T-Sarah</T-Sarah></h4>
+            <p>CEO, FashionStore</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">"The medical imaging software developed by Wassim has significantly improved our diagnostic capabilities. Highly recommended for complex projects."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="testimonial-info">
+            <h4>Dr. Michael Chen</h4>
+            <p>Medical Director, City Hospital</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Working with Wassim was a great experience. He transformed our outdated system into a modern, efficient platform that our team loves using daily."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="testimonial-info">
+            <h4>Neal arvind</h4>
+            <p>Operations Manager, TechSolutions Inc.</p>
           </div>
         </div>
       </div>
@@ -950,7 +1343,8 @@
           </div>
           <div class="contact-details">
             <h4>Location</h4>
-            <p>California, United states</p>
+            <p>California, United States
+            </p>
           </div>
         </div>
       </div>
@@ -991,7 +1385,7 @@
       <a href="https://www.instagram.com/devwass_/" target="_blank" title="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="https://wa.me/15814597709" target="_blank" title="WhatsApp">
+      <a href="https://wa.me/+19495222746" target="_blank" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
       </a>
       <a href="mailto:wassimhathat02@gmail.com" title="Email">
@@ -1011,6 +1405,14 @@
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.nav-links');
       const navItems = document.querySelectorAll('.nav-links li');
+      const themeToggle = document.getElementById('themeToggle');
+      const progressBar = document.getElementById('progressBar');
+      const sections = document.querySelectorAll('.section');
+      const skillBars = document.querySelectorAll('.skill-progress-bar');
+      const projectCards = document.querySelectorAll('.project-card');
+      const modal = document.getElementById('projectModal');
+      const closeModal = document.querySelector('.close-modal');
+      const modalContent = document.getElementById('modalContent');
       
       // Toggle menu
       hamburger.addEventListener('click', function() {
@@ -1043,8 +1445,138 @@
           }
         });
       });
+      
+      // Theme toggle functionality
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        if (document.body.classList.contains('light-mode')) {
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+      });
+      
+      // Scroll progress indicator
+      window.addEventListener('scroll', function() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      });
+      
+      // Animate sections on scroll
+      function checkScroll() {
+        sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (sectionTop < windowHeight * 0.85) {
+            section.classList.add('visible');
+            
+            // Animate skill bars when skills section is visible
+            if (section.id === 'resume') {
+              animateSkillBars();
+            }
+          }
+        });
+      }
+      
+      // Animate skill bars
+      function animateSkillBars() {
+        skillBars.forEach(bar => {
+          const width = bar.getAttribute('data-width');
+          bar.style.width = width;
+        });
+      }
+      
+      // Initialize skill bars with 0 width
+      skillBars.forEach(bar => {
+        bar.style.width = '0';
+      });
+      
+      // Check scroll on load and scroll
+      window.addEventListener('load', checkScroll);
+      window.addEventListener('scroll', checkScroll);
+      
+      // Project modals
+      projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const projectId = this.getAttribute('data-project');
+          showProjectModal(projectId);
+        });
+      });
+      
+      // Close modal
+      closeModal.addEventListener('click', function() {
+        modal.classList.remove('show');
+      });
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+        }
+      });
+      
+      // Show project modal with content
+      function showProjectModal(projectId) {
+        let title = '';
+        let content = '';
+        
+        switch(projectId) {
+          case 'medical':
+            title = 'Medical Imaging Software';
+            content = `
+              <h2>Medical Imaging Software</h2>
+              <p>This project involved developing specialized software for medical professionals to enhance diagnostic capabilities through advanced imaging processing.</p>
+              <h3>Features</h3>
+              <ul>
+                <li>High-resolution image processing</li>
+                <li>DICOM compatibility</li>
+                <li>Measurement and annotation tools</li>
+                <li>Secure patient data management</li>
+                <li>Cross-platform compatibility</li>
+              </ul>
+              <h3>Technologies Used</h3>
+              <p>Python, Django, OpenCV, PostgreSQL, JavaScript</p>
+            `;
+            break;
+          case 'bakery':
+            title = 'Bakery Management Software';
+            content = `
+              <h2>Bakery Management Software</h2>
+              <p>A comprehensive offline system designed specifically for bakery businesses to streamline operations and improve efficiency.</p>
+              <h3>Features</h3>
+              <ul>
+                <li>Inventory management</li>
+                <li>Sales tracking and reporting</li>
+                <li>Employee management</li>
+                <li>Delivery route optimization</li>
+                <li>Offline functionality</li>
+              </ul>
+              <h3>Technologies Used</h3>
+              <p>Java, Spring Boot, MySQL, JavaScript, HTML/CSS</p>
+            `;
+            break;
+          // Add cases for other projects...
+          default:
+            title = 'Project Details';
+            content = `<p>Detailed information about this project.</p>`;
+        }
+        
+        modalContent.innerHTML = content;
+        modal.classList.add('show');
+      }
+      
+      // Download resume button
+      const downloadBtn = document.querySelector('.download-resume');
+      downloadBtn.addEventListener('click', function() {
+        alert('Resume download functionality would be implemented here. In a real application, this would download your PDF resume.');
+        // In a real implementation, you would have:
+        // window.open('path/to/your/resume.pdf', '_blank');
+      });
     });
   </script>
 </body>
 </html>
-

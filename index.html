@@ -42,23 +42,6 @@
       --card-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
-    /* Scroll Progress */
-    .progress-container {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 4px;
-      background: transparent;
-      z-index: 1000;
-    }
-
-    .progress-bar {
-      height: 4px;
-      background: var(--accent-teal);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
     /* Theme Toggle */
     .theme-toggle {
       position: fixed;
@@ -331,11 +314,28 @@
       text-align: center;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .skill-pill:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(0, 255, 198, 0.5);
+    }
+
+    .skill-pill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .skill-pill:hover::after {
+      left: 100%;
     }
 
     /* Skill bars */
@@ -372,6 +372,23 @@
       border-radius: 4px;
       width: 0;
       transition: width 1.5s ease-in-out;
+      position: relative;
+    }
+
+    .skill-progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     /* Experience Section */
@@ -431,6 +448,7 @@
       overflow: hidden;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
     }
 
     .project-card:hover {
@@ -446,6 +464,17 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
     }
 
     .project-image:after {
@@ -464,14 +493,29 @@
       opacity: 1;
     }
 
-    .project-image i {
-      font-size: 60px;
-      color: #444;
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 255, 198, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
       transition: var(--transition);
+      z-index: 2;
     }
 
-    .project-card:hover .project-image i {
-      transform: scale(1.1);
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-overlay-text {
+      color: var(--bg-dark);
+      font-weight: 600;
+      font-size: 1.2rem;
     }
 
     .project-content {
@@ -502,6 +546,118 @@
       padding: 4px 10px;
       border-radius: 4px;
       font-size: 0.8rem;
+    }
+
+    /* Custom Vetki Logo */
+    .vetki-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e90ff, #4169e1);
+      border-radius: 16px;
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+    }
+
+    /* Project Modal */
+    .project-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .project-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--card-dark);
+      width: 90%;
+      max-width: 800px;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      color: var(--text-white);
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent-teal);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .modal-description {
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .modal-features {
+      margin-bottom: 20px;
+    }
+
+    .modal-features h3 {
+      color: var(--text-white);
+      margin-bottom: 10px;
+    }
+
+    .modal-features ul {
+      color: var(--text-light);
+      padding-left: 20px;
+    }
+
+    .modal-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     /* Services Section */
@@ -669,6 +825,55 @@
       font-size: 0.9rem;
     }
 
+    /* Contact Form */
+    .contact-form {
+      margin-top: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text-white);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-teal);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: var(--accent-teal);
+      color: var(--bg-dark);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: block;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 255, 198, 0.3);
+    }
+
     .social-icons {
       display: flex;
       justify-content: center;
@@ -725,27 +930,6 @@
     .stat-label {
       color: var(--text-light);
       font-size: 0.9rem;
-    }
-
-    /* Download Resume Button */
-    .download-resume {
-      display: block;
-      margin: 40px auto 0;
-      padding: 12px 30px;
-      background-color: var(--accent-teal);
-      color: var(--bg-dark);
-      border: none;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      text-align: center;
-      max-width: 250px;
-    }
-
-    .download-resume:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 255, 198, 0.3);
     }
 
     /* Responsive Styles */
@@ -1230,7 +1414,11 @@
     <div class="projects-grid">
       <div class="project-card" data-project="medical">
         <div class="project-image">
-          <i class="fas fa-laptop-medical"></i>
+          <!-- Updated Medical Imaging Software Image -->
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Medical Imaging Software">
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">Medical Imaging Software</h3>
@@ -1247,7 +1435,10 @@
       
       <div class="project-card" data-project="bakery">
         <div class="project-image">
-          <i class="fas fa-store"></i>
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bakery Management Software">
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">Bakery Management Software</h3>
@@ -1264,7 +1455,10 @@
       
       <div class="project-card" data-project="ecommerce">
         <div class="project-image">
-          <i class="fas fa-shopping-cart"></i>
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-commerce Website">
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">E-commerce Website</h3>
@@ -1281,7 +1475,11 @@
       
       <div class="project-card" data-project="vetki">
         <div class="project-image">
-          <i class="fas fa-comments"></i>
+          <!-- Custom Vetki Logo -->
+          <div class="vetki-logo">V</div>
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">Vetki Social App</h3>
@@ -1298,7 +1496,10 @@
       
       <div class="project-card" data-project="realestate">
         <div class="project-image">
-          <i class="fas fa-home"></i>
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1373&q=80" alt="Real Estate Listings Website">
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">Real Estate Listings Website</h3>
@@ -1315,7 +1516,10 @@
       
       <div class="project-card" data-project="crypto">
         <div class="project-image">
-          <i class="fas fa-chart-line"></i>
+          <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Crypto Price Dashboard">
+          <div class="project-overlay">
+            <span class="project-overlay-text">View Details</span>
+          </div>
         </div>
         <div class="project-content">
           <h3 class="project-title">Crypto Price Dashboard</h3>
@@ -1332,6 +1536,19 @@
     </div>
   </section>
 
+  <!-- Project Modal -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Project Details</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalContent">
+        <!-- Modal content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
   <section class="section" id="testimonials">
     <h2 class="section-title">Client Testimonials</h2>
     <div class="testimonials-container">
@@ -1342,8 +1559,8 @@
             <i class="fas fa-user"></i>
           </div>
           <div class="testimonial-info">
-            <h4>T-Sarah</h4>
-            <p>CEO, FashionStore</p>
+            <h4>Sue Y. nabi</h4>
+            <p>CEO, Coty Inc</p>
           </div>
         </div>
       </div>
@@ -1355,8 +1572,8 @@
             <i class="fas fa-user"></i>
           </div>
           <div class="testimonial-info">
-            <h4>Neal Arvind</h4>
-            <p>Operations Manager, TechSolutions Inc.</p>
+            <h4>David Burden</h4>
+            <p>Chief information officer, ForgeRock.</p>
           </div>
         </div>
       </div>
@@ -1407,34 +1624,22 @@
       </div>
       
       <div class="card">
-        <h3 class="card-title">Professional Profiles</h3>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-github"></i>
+        <h3 class="card-title">Contact Form</h3>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name" required>
           </div>
-          <div class="contact-details">
-            <h4>GitHub</h4>
-            <p>github.com/wassimhethat</p>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email" required>
           </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-linkedin"></i>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject">
           </div>
-          <div class="contact-details">
-            <h4>LinkedIn</h4>
-            <p>linkedin.com/in/wassimhethat</p>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Your Message" required></textarea>
           </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-twitter"></i>
-          </div>
-          <div class="contact-details">
-            <h4>Twitter</h4>
-            <p>twitter.com/devwass_</p>
-          </div>
-        </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
       </div>
     </div>
     
@@ -1463,13 +1668,14 @@
       const navLinks = document.querySelector('.nav-links');
       const navItems = document.querySelectorAll('.nav-links li');
       const themeToggle = document.getElementById('themeToggle');
-      const progressBar = document.getElementById('progressBar');
       const sections = document.querySelectorAll('.section');
       const skillBars = document.querySelectorAll('.skill-progress-bar');
       const projectCards = document.querySelectorAll('.project-card');
       const modal = document.getElementById('projectModal');
       const closeModal = document.querySelector('.close-modal');
       const modalContent = document.getElementById('modalContent');
+      const modalTitle = document.getElementById('modalTitle');
+      const contactForm = document.getElementById('contactForm');
       
       // Toggle menu
       hamburger.addEventListener('click', function() {
@@ -1511,15 +1717,6 @@
         } else {
           themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
-      });
-      
-      // Scroll progress indicator
-      window.addEventListener('scroll', function() {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-        progressBar.style.width = scrollPercent + '%';
       });
       
       // Animate sections on scroll
@@ -1585,56 +1782,120 @@
           case 'medical':
             title = 'Medical Imaging Software';
             content = `
-              <h2>Medical Imaging Software</h2>
-              <p>This project involved developing specialized software for medical professionals to enhance diagnostic capabilities through advanced imaging processing.</p>
-              <h3>Features</h3>
-              <ul>
-                <li>High-resolution image processing</li>
-                <li>DICOM compatibility</li>
-                <li>Measurement and annotation tools</li>
-                <li>Secure patient data management</li>
-                <li>Cross-platform compatibility</li>
-              </ul>
+              <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Medical Imaging Software" class="modal-image">
+              <p class="modal-description">This project involved developing specialized software for medical professionals to enhance diagnostic capabilities through advanced imaging processing.</p>
+              <div class="modal-features">
+                <h3>Features</h3>
+                <ul>
+                  <li>High-resolution image processing</li>
+                  <li>DICOM compatibility</li>
+                  <li>Measurement and annotation tools</li>
+                  <li>Secure patient data management</li>
+                  <li>Cross-platform compatibility</li>
+                </ul>
+              </div>
               <h3>Technologies Used</h3>
-              <p>Python, Django, OpenCV, PostgreSQL, JavaScript</p>
+              <div class="modal-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
             `;
             break;
           case 'bakery':
             title = 'Bakery Management Software';
             content = `
-              <h2>Bakery Management Software</h2>
-              <p>A comprehensive offline system designed specifically for bakery businesses to streamline operations and improve efficiency.</p>
-              <h3>Features</h3>
-              <ul>
-                <li>Inventory management</li>
-                <li>Sales tracking and reporting</li>
-                <li>Employee management</li>
-                <li>Delivery route optimization</li>
-                <li>Offline functionality</li>
-              </ul>
+              <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bakery Management Software" class="modal-image">
+              <p class="modal-description">A comprehensive offline system designed specifically for bakery businesses to streamline operations and improve efficiency.</p>
+              <div class="modal-features">
+                <h3>Features</h3>
+                <ul>
+                  <li>Inventory management</li>
+                  <li>Sales tracking and reporting</li>
+                  <li>Employee management</li>
+                  <li>Delivery route optimization</li>
+                  <li>Offline functionality</li>
+                </ul>
+              </div>
               <h3>Technologies Used</h3>
-              <p>Java, Spring Boot, MySQL, JavaScript, HTML/CSS</p>
+              <div class="modal-tech">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">HTML/CSS</span>
+              </div>
             `;
             break;
-          // Add cases for other projects...
+          case 'ecommerce':
+            title = 'E-commerce Website';
+            content = `
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-commerce Website" class="modal-image">
+              <p class="modal-description">A fully functional online store with secure payment processing, shopping cart functionality, and responsive design.</p>
+              <div class="modal-features">
+                <h3>Features</h3>
+                <ul>
+                  <li>Product catalog with filtering</li>
+                  <li>Shopping cart and checkout</li>
+                  <li>Secure payment integration</li>
+                  <li>User accounts and order history</li>
+                  <li>Admin dashboard for inventory</li>
+                </ul>
+              </div>
+              <h3>Technologies Used</h3>
+              <div class="modal-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">Stripe API</span>
+              </div>
+            `;
+            break;
+          case 'vetki':
+            title = 'Vetki Social App';
+            content = `
+              <div class="vetki-logo" style="margin: 0 auto 20px; width: 120px; height: 120px; font-size: 60px;">V</div>
+              <p class="modal-description">A modern social media platform with real-time features, user profiles, and interactive content sharing.</p>
+              <div class="modal-features">
+                <h3>Features</h3>
+                <ul>
+                  <li>User profiles and authentication</li>
+                  <li>Real-time post creation and sharing</li>
+                  <li>Like and comment functionality</li>
+                  <li>Responsive design for all devices</li>
+                  <li>Real-time notifications</li>
+                </ul>
+              </div>
+              <h3>Technologies Used</h3>
+              <div class="modal-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">Socket.io</span>
+              </div>
+            `;
+            break;
           default:
             title = 'Project Details';
             content = `<p>Detailed information about this project.</p>`;
         }
         
+        modalTitle.textContent = title;
         modalContent.innerHTML = content;
         modal.classList.add('show');
       }
       
-      // Download resume button
-      const downloadBtn = document.querySelector('.download-resume');
-      downloadBtn.addEventListener('click', function() {
-        alert('Resume download functionality would be implemented here. In a real application, this would download your PDF resume.');
-        // In a real implementation, you would have:
-        // window.open('path/to/your/resume.pdf', '_blank');
+      // Contact form submission
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
       });
     });
   </script>
 </body>
 </html>
-
